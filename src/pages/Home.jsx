@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import CreateModal from "../components/newModal";
 import IconPlus from "../components/icons/PlusIcon";
 import Checkbox from "@mui/material/Checkbox";
-// import Link from "next/link";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [url, setUrl] = useState('https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json');
+  const url = 'https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json';
   const [jsonData, setJsonData] = useState(null);
+  const [sessionData, setSessionData] = useState(null);
+
 
   const handleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -22,9 +24,6 @@ const Home = () => {
     setIsModalOpen(false);
   };
 
-  const buttonCheck = () => {
-    console.log("Hi");
-  };
 
   useEffect(() => {
     const fetchJsonData = async () => {
@@ -36,7 +35,6 @@ const Home = () => {
         const data = await response.json();
         setJsonData(data);
         sessionStorage.setItem('jsonData', JSON.stringify(data));
-        console.log('JSON data fetched and saved to session storage:', data);
       } catch (error) {
         console.error('Error fetching JSON:', error);
       }
@@ -44,6 +42,13 @@ const Home = () => {
 
     fetchJsonData();
   }, [url]);
+
+  useEffect(() => {
+    const data = sessionStorage.getItem('jsonData');
+    if (data) {
+      setSessionData(JSON.parse(data));
+    }
+  }, []);
 
   return (
     <section className="home-container">
@@ -125,6 +130,25 @@ const Home = () => {
           </button>
         </div>
       </div>
+
+    <div className="invoice-list-container">
+
+      {sessionData && (
+        <div className="invoice-list">
+          {sessionData.map((invoice, index) => (
+            <Link to={"/"}>
+            <div key={index} className="invoice-item">
+              <p>#{invoice.id}</p>
+              <p>{invoice.clientName}</p>
+              <p>${invoice.total}</p>
+              <p>{invoice.status}</p>
+            </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+
     </section>
   );
 };

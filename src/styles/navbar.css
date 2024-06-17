@@ -1,5 +1,5 @@
 section.navbar{
-    position: absolute;
+    position: fixed;
     background-color: var(--background-nav);
     height: 100%;
     width: 105px;

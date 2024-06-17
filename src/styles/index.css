@@ -6,6 +6,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'League Spartan', sans-serif;
+  text-decoration: none;
   
 }
 
@@ -15,6 +16,7 @@ main{
   height: 100vh;
   width: 100%;
   background: var(--background-main);
+  overflow: auto
 
 }
 
@@ -41,6 +43,9 @@ div.App{
   width: 100%;
   background: var(--background-main);
 }
+
+
+/* *************************************************HOME LAYOUT************************************************* */
 
 
 section.home-container{
@@ -143,3 +148,33 @@ div.info-bar button:hover{
 div.info-bar button:hover .icon-plus {
   fill: #9277FF;
 }
+
+div.invoice-list-container{
+  padding: 40px 0 40px 0;
+}
+
+div.invoice-item{
+  position: relative;
+  width: 1000px;
+  height: 72px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--background-secondary);
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--background-secondary);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: all .3s;
+  color: var(--text-color);
+}
+
+div.invoice-item:hover{
+  border: 1px solid #7C5DFA;
+
+}
+
+
+/* *************************************************HOME LAYOUT************************************************* */
