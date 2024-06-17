@@ -1,0 +1,39 @@
+section.modal-background{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.397);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+div.modal-new-container{
+    height: 100%;
+    width: 680px;
+    border-radius: 0px 20px 20px 0;
+    background-color: var(--background-main);
+    z-index: 1001;
+    cursor: auto;
+}
+
+form.new-form-container{
+    width: 100%;
+    height: 100%;
+    padding: 50px 40px 0 150px;
+}
+
+div.bill-from-adi-container,
+div.bill-from-city-post-country{
+    display: flex;
+}
+
+div.bill-from-adi-container{
+    flex-direction: column;
+}
+
+input.invoice-inputs{
+    height: 48px;
+    border-radius: 5px;
+    outline: 0;
+    border: 0;
+}
