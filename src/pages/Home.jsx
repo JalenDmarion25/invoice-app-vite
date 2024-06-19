@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreateModal from "../components/newModal";
 import IconPlus from "../components/icons/PlusIcon";
+import ArrowDown from "../assets/icon-arrow-down.svg";
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 
@@ -84,7 +85,7 @@ const Home = () => {
         <div className="invoice-new-filter">
           <div className="invoice-filter">
             <span onClick={handleFilter} className="filter-dropdown">
-              Filter by status
+              Filter by status <img src={ArrowDown} alt="arwDwn"/>
             </span>
 
             {isFilterOpen && (
@@ -164,7 +165,7 @@ const Home = () => {
           <div className="invoice-list">
             {filteredInvoices.map((invoice, index) => (
               <Link 
-                to={"/"}
+                to={"/invoice-app-vite/details/"}
                 key={invoice.id}>
                 <div key={index} className="invoice-item">
                   <p className="invoice-id">#{invoice.id}</p>

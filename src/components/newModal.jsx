@@ -114,7 +114,6 @@ const newModal = ({ handleCloseModal }) => {
               </div>
             </div>
 
-
             <div className="project-description-container">
               <label htmlFor="project-description">Project Description</label>
               <input
@@ -129,9 +128,9 @@ const newModal = ({ handleCloseModal }) => {
             <h4 className="modal-bill-headers item-header">Item List</h4>
 
             <Button
-            className={"add-new-item-btn"}
-            buttonText="+ Add New Item"
-            onClick={TestButton}
+              className={"add-new-item-btn"}
+              buttonText="+ Add New Item"
+              onClick={TestButton}
             />
           </div>
 

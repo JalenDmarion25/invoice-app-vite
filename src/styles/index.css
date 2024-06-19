@@ -9,6 +9,25 @@
   text-decoration: none;
   
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
 
 body,
 div#root,
@@ -30,6 +49,12 @@ main{
   --modal-input-border: #DFE3FA;
   --add-button-text-color: #7E88C3;
   --add-button-background-color: #d9dadf;
+  --save-as-draft-button-color-hover: #0C0E16;
+  --save-as-draft-button-text-color: #888EB0;
+  --add-button-color-hover: #DFE3FA;
+  --modal-color-label: #7E88C3;
+
+
 
   
 
@@ -44,6 +69,12 @@ main{
   --modal-input-border: #dfe3fa00;
   --add-button-text-color: #DFE3FA;
   --add-button-background-color: #252945;
+  --save-as-draft-button-color-hover: #1E2139;
+  --save-as-draft-button-text-color: #DFE3FA;
+  --add-button-color-hover: #373B53;
+  --modal-color-label: #DFE3FA;
+
+
 
 
 

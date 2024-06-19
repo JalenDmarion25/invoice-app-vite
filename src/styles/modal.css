@@ -19,6 +19,7 @@ h4{
 label{
     width: fit-content;
     margin-bottom: 4px;
+    color: var(--modal-color-label);
 }
 
 div.modal-new-container{
@@ -37,6 +38,11 @@ div.new-form-container{
     overflow: auto;
 }
 
+div.new-invoice-bill-from,
+div.bill-to-container{
+    margin-bottom: 40px;
+}
+
 div.bill-from-adi-container,
 div.bill-to-client-name-container,
 div.bill-to-client-mail-container,
@@ -44,6 +50,8 @@ div.bill-to-client-adi-container,
 div.project-description-container{
     width: 100%;
     display: flex;
+
+
 }
 
 div.bill-from-city-post-country,
@@ -59,6 +67,8 @@ div.bill-to-client-mail-container,
 div.bill-to-client-adi-container,
 div.project-description-container{
     flex-direction: column;
+    margin: 15px 0 15px 0;
+
 }
 
 input.invoice-inputs{
@@ -82,6 +92,7 @@ div.bill-to-country{
     display: flex;
     flex-direction: column;
     width: 150px;
+    margin: 10px 0 10px 0;
 }
 
 input.three-shared-input{
@@ -92,6 +103,11 @@ button.add-new-item-btn{
     width: 100%;
     color: var(--add-button-text-color);
     background-color: var(--add-button-background-color);
+    transition: all .3s;
+}
+
+button.add-new-item-btn:hover{
+    background-color: var(--add-button-color-hover);
 }
 
 div.new-modal-button-container{
@@ -103,29 +119,35 @@ div.new-modal-button-container{
 button.modal-discard-btn{
     background-color: #d9dadf;
     color: #7E88C3;
+    transition: all .3s;
+
     
 }
 
 button.modal-discard-btn:hover{
-    
+    background-color: #DFE3FA;
 }
 
 
 button.modal-save-draft-btn{
     background-color: #373B53;
+    color: var(--save-as-draft-button-text-color);
     margin-right: 10px;
-
+    transition: all .3s;
 }
 
 button.modal-save-draft-btn:hover{
-
+    background-color: var(--save-as-draft-button-color-hover);
 }
 
 button.modal-save-send-btn{
     background-color: #7C5DFA;
+    transition: all .3s;
+
 
 }
 
 button.modal-save-send-btn:hover{
+    background-color: #9277FF;
 
 }

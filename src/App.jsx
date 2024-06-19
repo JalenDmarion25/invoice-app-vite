@@ -15,12 +15,12 @@ function App() {
 <BrowserRouter>
   <Routes>
     <Route
-    path="/"
+    path="/invoice-app-vite/"
     element={<Home />}
     />
 
 <Route
-    path="/details"
+    path="/invoice-app-vite/details/"
     element={<Detail />}
     />
   </Routes>
