@@ -28,6 +28,10 @@ main{
   --text-color-draft: #373B53;
   --dropdown-border: #1115173d;
   --modal-input-border: #DFE3FA;
+  --add-button-text-color: #7E88C3;
+  --add-button-background-color: #d9dadf;
+
+  
 
 }
 
@@ -38,6 +42,8 @@ main{
   --dropdown-border: #ffffff3d;
   --text-color-draft: #DFE3FA;
   --modal-input-border: #dfe3fa00;
+  --add-button-text-color: #DFE3FA;
+  --add-button-background-color: #252945;
 
 
 
@@ -51,7 +57,6 @@ div.App{
 
 
 button.default-button {
-  margin-left: 600px;
   padding: 0 20px 0 20px;
   font-weight: 600;
   height: 48px;

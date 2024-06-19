@@ -7,8 +7,18 @@ section.modal-background{
     cursor: pointer;
 }
 
+h2{
+    margin-bottom: 35px;
+}
+
+h4{
+    color: #7C5DFA;
+    margin-bottom: 15px;
+}
+
 label{
     width: fit-content;
+    margin-bottom: 4px;
 }
 
 div.modal-new-container{
@@ -20,16 +30,18 @@ div.modal-new-container{
     cursor: auto;
 }
 
-form.new-form-container{
+div.new-form-container{
     width: 100%;
     height: 100%;
-    padding: 50px 40px 0 150px;
+    padding: 50px 40px 20px 150px;
+    overflow: auto;
 }
 
 div.bill-from-adi-container,
 div.bill-to-client-name-container,
 div.bill-to-client-mail-container,
-div.bill-to-client-adi-container{
+div.bill-to-client-adi-container,
+div.project-description-container{
     width: 100%;
     display: flex;
 }
@@ -44,7 +56,8 @@ div.bill-to-city-post-country{
 div.bill-from-adi-container,
 div.bill-to-client-name-container,
 div.bill-to-client-mail-container,
-div.bill-to-client-adi-container{
+div.bill-to-client-adi-container,
+div.project-description-container{
     flex-direction: column;
 }
 
@@ -73,4 +86,46 @@ div.bill-to-country{
 
 input.three-shared-input{
     width: 100%;
+}
+
+button.add-new-item-btn{
+    width: 100%;
+    color: var(--add-button-text-color);
+    background-color: var(--add-button-background-color);
+}
+
+div.new-modal-button-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+button.modal-discard-btn{
+    background-color: #d9dadf;
+    color: #7E88C3;
+    
+}
+
+button.modal-discard-btn:hover{
+    
+}
+
+
+button.modal-save-draft-btn{
+    background-color: #373B53;
+    margin-right: 10px;
+
+}
+
+button.modal-save-draft-btn:hover{
+
+}
+
+button.modal-save-send-btn{
+    background-color: #7C5DFA;
+
+}
+
+button.modal-save-send-btn:hover{
+
 }
