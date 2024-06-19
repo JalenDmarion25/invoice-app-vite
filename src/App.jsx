@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import useLocalStorage from 'use-local-storage';
 import Navbar from './components/navbar';
 import Home from './pages/Home';
+import Detail from './pages/DetailsPage';
 
 function App() {
 
@@ -14,8 +15,13 @@ function App() {
 <BrowserRouter>
   <Routes>
     <Route
-    path='/'
+    path="/"
     element={<Home />}
+    />
+
+<Route
+    path="/details"
+    element={<Detail />}
     />
   </Routes>
 </BrowserRouter>

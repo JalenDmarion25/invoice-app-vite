@@ -7,10 +7,14 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const url = 'https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json';
-  const [jsonData, setJsonData] = useState(null);
-  const [sessionData, setSessionData] = useState(null);
-
+  const url = "https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json";
+  const [jsonData, setJsonData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState({
+    draft: false,
+    pending: false,
+    paid: false,
+  });
 
   const handleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -24,31 +28,49 @@ const Home = () => {
     setIsModalOpen(false);
   };
 
+  const handleCheckboxChange = (event) => {
+    setFilters({
+      ...filters,
+      [event.target.name]: event.target.checked,
+    });
+  };
 
   useEffect(() => {
     const fetchJsonData = async () => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setJsonData(data);
-        sessionStorage.setItem('jsonData', JSON.stringify(data));
+        sessionStorage.setItem("jsonData", JSON.stringify(data));
       } catch (error) {
-        console.error('Error fetching JSON:', error);
+        console.error("Error fetching JSON:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchJsonData();
+    const data = sessionStorage.getItem("jsonData");
+    if (data) {
+      setJsonData(JSON.parse(data));
+      setLoading(false);
+    } else {
+      fetchJsonData();
+    }
   }, [url]);
 
-  useEffect(() => {
-    const data = sessionStorage.getItem('jsonData');
-    if (data) {
-      setSessionData(JSON.parse(data));
+  const filteredInvoices = jsonData.filter(invoice => {
+    if (!filters.draft && !filters.pending && !filters.paid) {
+      return true;
     }
-  }, []);
+    return filters[invoice.status];
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="home-container">
@@ -56,7 +78,7 @@ const Home = () => {
       <div className="info-bar">
         <div className="invoice-info">
           <h1>Invoices</h1>
-          <span>There are 0 total invoices</span>
+          <span>There are {filteredInvoices.length} total invoices</span>
         </div>
 
         <div className="invoice-new-filter">
@@ -71,6 +93,8 @@ const Home = () => {
                   <Checkbox
                     name="draft"
                     id="draft"
+                    checked={filters.draft}
+                    onChange={handleCheckboxChange}
                     sx={{
                       padding: 0,
                       color: "#9277FF",
@@ -78,7 +102,7 @@ const Home = () => {
                         color: "#9277FF",
                       },
                       "&:hover": {
-                        backgroundColor: "transparent", // This removes the hover effect
+                        backgroundColor: "transparent",
                       },
                     }}
                     disableRipple
@@ -89,6 +113,8 @@ const Home = () => {
                   <Checkbox
                     name="pending"
                     id="pending"
+                    checked={filters.pending}
+                    onChange={handleCheckboxChange}
                     sx={{
                       padding: 0,
                       color: "#9277FF",
@@ -96,7 +122,7 @@ const Home = () => {
                         color: "#9277FF",
                       },
                       "&:hover": {
-                        backgroundColor: "transparent", // This removes the hover effect
+                        backgroundColor: "transparent",
                       },
                     }}
                     disableRipple
@@ -107,6 +133,8 @@ const Home = () => {
                   <Checkbox
                     name="paid"
                     id="paid"
+                    checked={filters.paid}
+                    onChange={handleCheckboxChange}
                     sx={{
                       padding: 0,
                       color: "#9277FF",
@@ -114,7 +142,7 @@ const Home = () => {
                         color: "#9277FF",
                       },
                       "&:hover": {
-                        backgroundColor: "transparent", // This removes the hover effect
+                        backgroundColor: "transparent",
                       },
                     }}
                     disableRipple
@@ -131,24 +159,45 @@ const Home = () => {
         </div>
       </div>
 
-    <div className="invoice-list-container">
-
-      {sessionData && (
-        <div className="invoice-list">
-          {sessionData.map((invoice, index) => (
-            <Link to={"/"}>
-            <div key={index} className="invoice-item">
-              <p>#{invoice.id}</p>
-              <p>{invoice.clientName}</p>
-              <p>${invoice.total}</p>
-              <p>{invoice.status}</p>
-            </div>
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-
+      <div className="invoice-list-container">
+        {filteredInvoices.length > 0 ? (
+          <div className="invoice-list">
+            {filteredInvoices.map((invoice, index) => (
+              <Link 
+                to={"/"}
+                key={invoice.id}>
+                <div key={index} className="invoice-item">
+                  <p className="invoice-id">#{invoice.id}</p>
+                  <p className="invoice-client">{invoice.clientName}</p>
+                  <p className="invoice-total">${invoice.total}</p>
+                  <p
+                    className={`${
+                      invoice.status === "paid"
+                        ? "paid__status"
+                        : invoice.status === "pending"
+                        ? "pending__status"
+                        : "draft__status"
+                    }`}
+                  >
+                    <span
+                      className={`${
+                        invoice.status === "paid"
+                          ? "paid__span"
+                          : invoice.status === "pending"
+                          ? "pending__span"
+                          : "draft__span"
+                      }`}
+                    ></span>{" "}
+                    {invoice.status}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div>No invoices found.</div>
+        )}
+      </div>
     </section>
   );
 };

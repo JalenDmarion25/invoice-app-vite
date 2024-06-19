@@ -7,6 +7,10 @@ section.modal-background{
     cursor: pointer;
 }
 
+label{
+    width: fit-content;
+}
+
 div.modal-new-container{
     height: 100%;
     width: 680px;
@@ -23,11 +27,24 @@ form.new-form-container{
 }
 
 div.bill-from-adi-container,
-div.bill-from-city-post-country{
+div.bill-to-client-name-container,
+div.bill-to-client-mail-container,
+div.bill-to-client-adi-container{
+    width: 100%;
     display: flex;
 }
 
-div.bill-from-adi-container{
+div.bill-from-city-post-country,
+div.bill-to-city-post-country{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+div.bill-from-adi-container,
+div.bill-to-client-name-container,
+div.bill-to-client-mail-container,
+div.bill-to-client-adi-container{
     flex-direction: column;
 }
 
@@ -35,5 +52,25 @@ input.invoice-inputs{
     height: 48px;
     border-radius: 5px;
     outline: 0;
-    border: 0;
+    border: 1px solid var(--modal-input-border);
+    background-color: var(--background-secondary);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 20px 0 20px;
+    color: var(--text-color);
+}
+
+div.bill-from-city,
+div.bill-from-post,
+div.bill-from-country,
+div.bill-to-city,
+div.bill-to-post,
+div.bill-to-country{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+input.three-shared-input{
+    width: 100%;
 }
