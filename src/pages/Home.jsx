@@ -165,7 +165,7 @@ const Home = () => {
           <div className="invoice-list">
             {filteredInvoices.map((invoice, index) => (
               <Link 
-                to={"/invoice-app-vite/details/"}
+                to={`/invoice-app-vite/details/${invoice.id}`}
                 key={invoice.id}>
                 <div key={index} className="invoice-item">
                   <p className="invoice-id">#{invoice.id}</p>

@@ -1,0 +1,49 @@
+div.item-list{
+    display: flex;
+    font-weight: 600;
+    font-size: 18px;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+div.item-list input{
+    height: 48px;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-color);
+    border: 1px solid var(--modal-input-border);
+    background-color: var(--background-secondary);
+    border-radius: 5px;
+}
+
+div.item-list input:focus{
+    outline: 1px solid #7C5DFA;
+}
+
+input.item-name{
+    width: 190px;
+    padding: 0 15px 0 15px;
+
+}
+
+input.item-quantity{
+    width: 50px;
+    text-align: center;
+    padding: 0 0 0 0;
+
+}
+
+input.item-price{
+    width: 100px;
+    padding: 0 15px 0 15px;
+}
+
+span.item-total{
+    align-content: center;
+}
+
+button.delete-item{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}

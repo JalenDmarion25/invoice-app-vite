@@ -1,5 +1,8 @@
 import React from "react";
 import Button from "./ui/BaseButton";
+import Calendar from "./calender";
+import DropdownModal from './dropdownModal';
+import AddItemList from "./addItemList";
 import "../styles/modal.css";
 
 const newModal = ({ handleCloseModal }) => {
@@ -112,7 +115,24 @@ const newModal = ({ handleCloseModal }) => {
                   className="invoice-inputs three-shared-input"
                 />
               </div>
+
+
+
+
+
+
+              </div>
             </div>
+
+            <div className="date-payment-container">
+                <div className="invoice-date">
+                  <Calendar/>
+                </div>
+                <div className="payment-terms">
+                  <DropdownModal/>
+                </div>
+                </div>
+
 
             <div className="project-description-container">
               <label htmlFor="project-description">Project Description</label>
@@ -122,17 +142,11 @@ const newModal = ({ handleCloseModal }) => {
                 className="invoice-inputs single-line-input"
               />
             </div>
-          </div>
 
-          <div className="item-list-container">
-            <h4 className="modal-bill-headers item-header">Item List</h4>
 
-            <Button
-              className={"add-new-item-btn"}
-              buttonText="+ Add New Item"
-              onClick={TestButton}
-            />
-          </div>
+          <AddItemList/>
+
+
 
           <div className="new-modal-button-container">
             <div>

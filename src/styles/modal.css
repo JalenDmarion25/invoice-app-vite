@@ -83,6 +83,10 @@ input.invoice-inputs{
     color: var(--text-color);
 }
 
+input.invoice-inputs:focus{
+    outline: 1px solid #7C5DFA;
+}
+
 div.bill-from-city,
 div.bill-from-post,
 div.bill-from-country,
@@ -95,6 +99,11 @@ div.bill-to-country{
     margin: 10px 0 10px 0;
 }
 
+div.date-payment-container{
+    display: flex;
+    justify-content: space-between;
+}
+
 input.three-shared-input{
     width: 100%;
 }
@@ -104,6 +113,7 @@ button.add-new-item-btn{
     color: var(--add-button-text-color);
     background-color: var(--add-button-background-color);
     transition: all .3s;
+    margin-top: 20px;
 }
 
 button.add-new-item-btn:hover{
@@ -151,3 +161,5 @@ button.modal-save-send-btn:hover{
     background-color: #9277FF;
 
 }
+
+
