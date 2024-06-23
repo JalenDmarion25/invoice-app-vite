@@ -1,9 +1,34 @@
 div.item-list{
+    position: relative;
     display: flex;
     font-weight: 600;
     font-size: 18px;
-    justify-content: space-between;
+    justify-content: normal;
     margin-bottom: 15px;
+}
+
+div.item-labels{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+label.item-name-label{
+
+}
+
+label.item-quantity-label{
+    position: absolute;
+    right: 245px;
+}
+
+label.item-price-label{
+    position: absolute;
+    right: 185px;
+}
+
+label.item-total-label{
+    position: absolute;
+    right: 60px;
 }
 
 div.item-list input{
@@ -30,20 +55,30 @@ input.item-quantity{
     width: 50px;
     text-align: center;
     padding: 0 0 0 0;
+    margin-left: 10px;
 
 }
 
 input.item-price{
     width: 100px;
     padding: 0 15px 0 15px;
+    margin-left: 10px;
 }
 
 span.item-total{
+    height: 100%;
     align-content: center;
+    text-align: center;
+    position: absolute;
+    right: 30px;
 }
 
 button.delete-item{
+    height: 100%;
+    position: absolute;
+    right: 0;
     background-color: transparent;
     border: 0;
     cursor: pointer;
+    margin: auto 0 auto 0;
 }

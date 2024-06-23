@@ -14,14 +14,14 @@ const getFebDays = (year) => {
   return isLeapYear(year) ? 29 : 28;
 }
 
-const Calendar = () => {
+const Calendar = ({onChange}) => {
   const [currDate, setCurrDate] = useState(new Date());
   const [currMonth, setCurrMonth] = useState(currDate.getMonth());
   const [currYear, setCurrYear] = useState(currDate.getFullYear());
   const [daysOfMonth, setDaysOfMonth] = useState([]);
   const [showMonthList, setShowMonthList] = useState(false);
-  const [calendarVisible, setCalendarVisible] = useState(false); // State to manage calendar visibility
-  const [selectedDate, setSelectedDate] = useState(null); // State to store the selected date
+  const [calendarVisible, setCalendarVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     generateCalendar(currMonth, currYear);
@@ -60,10 +60,12 @@ const Calendar = () => {
 
   const handleDayClick = (day) => {
     const selectedDate = new Date(currYear, currMonth, day);
+    const jsonDateFormat = `${currYear}-${currMonth}-${day}`;
     const formattedDate = `${day} ${monthNames[currMonth]} ${currYear}`;
-    console.log(`Selected date: ${formattedDate}`);
+    console.log(`Selected date: ${jsonDateFormat}`);
     setSelectedDate(formattedDate);
-    setCalendarVisible(false); // Hide the calendar after selecting a date
+    setCalendarVisible(false);
+    onChange(jsonDateFormat);
   }
 
   const toggleCalendar = () => {

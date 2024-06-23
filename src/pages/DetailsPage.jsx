@@ -1,60 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import ArrowLeft from '../assets/icon-arrow-left.svg'
+import Button from '../components/ui/BaseButton';
 
 const DetailsPage = () => {
   const [invoiceDetail, setInovoiceDetail] = useState(null);
-  const { code } = useParams(); // Assuming 'code' corresponds to the 'id' of the invoice
+  const { code } = useParams();
 
   useEffect(() => {
-    // Step 1: Retrieve the JSON data from sessionStorage
-    const jsonData = sessionStorage.getItem('jsonData');
+    const jsonData = sessionStorage.getItem("jsonData");
 
-    // Ensure jsonData is not null
     if (jsonData) {
       try {
-        // Step 2: Parse the JSON string
         let dataArray = JSON.parse(jsonData);
 
-        // Step 3: Check if dataArray is an array
         if (Array.isArray(dataArray)) {
-          // Access the specific object
-          const invoiceDetail = dataArray.find(invoice => invoice.id === code);
+          const invoiceDetail = dataArray.find(
+            (invoice) => invoice.id === code
+          );
           console.log(invoiceDetail);
-          
-          // Step 4: Set the specific object in the state
+
           setInovoiceDetail(invoiceDetail);
         } else {
-          console.log('Parsed JSON data is not an array');
+          console.log("Parsed JSON data is not an array");
         }
       } catch (error) {
-        console.error('Error parsing JSON data:', error);
+        console.error("Error parsing JSON data:", error);
       }
     } else {
       console.log('No data found in sessionStorage with key "jsonData"');
     }
-  }, [code]); // The effect runs whenever the 'code' changes
+  }, [code]);
 
   return (
-    <div>
-      <h1>Details Page</h1>
+    <main className="invoice-detail-container">
+
       {invoiceDetail ? (
-        <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-        >
+        <section className="invoice-detail-information">
+      <Link className="return-home-btn" to={"/invoice-app-vite/"}>
+       <img src={ArrowLeft} alt="" srcset="" /> Go back
+      </Link>
+          <div className="status-info-bar">
+            <div className="status-info">
+
+            <span className="info-status">Status</span>{" "}
+            <p
+              className={`${
+                invoiceDetail.status === "paid"
+                  ? "paid__status"
+                  : invoiceDetail.status === "pending"
+                  ? "pending__status"
+                  : "draft__status"
+              }`}
+            >
+              <span
+                className={`${
+                  invoiceDetail.status === "paid"
+                    ? "paid__span"
+                    : invoiceDetail.status === "pending"
+                    ? "pending__span"
+                    : "draft__span"
+                }`}
+              ></span>{" "}
+              {invoiceDetail.status}
+            </p>
+            </div>
+
+
+             <div>
+             <Button className={"ivoice-detail-edit-btn"} buttonText={"Edit"} />
+            <Button className={"ivoice-detail-delete-btn"} buttonText={"Delete"} />
+            <Button className={"ivoice-detail-paid-btn"} buttonText={"Mark as Paid"} />
+            </div>   
+          </div>
           <h3>Invoice Details:</h3>
           <p>{invoiceDetail.id}</p>
-          <pre>{JSON.stringify(invoiceDetail, null, 2)}</pre>
-        </div>
+        </section>
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </main>
   );
 };
 

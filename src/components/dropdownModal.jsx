@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ArrowDown from '../assets/icon-arrow-down.svg'
 import "../styles/dropdownModal.css";
-const dropdownModal = () => {
+const dropdownModal = ({ onChange }) => {
 
     const [optionsVisible, setOptionsVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState({ text: 'Net 1 Day', value: 1 });
@@ -15,6 +15,7 @@ const dropdownModal = () => {
     const handleOptionClick = (text, value) => {
         setSelectedOption({ text, value });
         setOptionsVisible(false);
+        onChange(value)
       };
 
     return (

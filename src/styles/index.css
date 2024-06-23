@@ -64,6 +64,11 @@ main{
   --save-as-draft-button-text-color: #888EB0;
   --add-button-color-hover: #DFE3FA;
   --modal-color-label: #7E88C3;
+  --invoice-detail-edit-btn-bg-color: #e4e5e9;
+  --invoice-detail-edit-btn-text-color: #7E88C3;
+  --invoice-detail-edit-btn-bg-color-hover: #DFE3FA;
+
+
 
 
 
@@ -84,6 +89,10 @@ main{
   --save-as-draft-button-text-color: #DFE3FA;
   --add-button-color-hover: #373B53;
   --modal-color-label: #DFE3FA;
+  --invoice-detail-edit-btn-bg-color: #33385f;
+  --invoice-detail-edit-btn-text-color: #DFE3FA;
+  --invoice-detail-edit-btn-bg-color-hover: #FFFFFF;
+
 
 
 
@@ -313,3 +322,84 @@ span.draft__span{
 
 
 /* *************************************************HOME LAYOUT************************************************* */
+
+
+/* *************************************************Invoice Detail LAYOUT************************************************* */
+main.invoice-detail-container{
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color);
+  padding-top: 50px;
+}
+
+a.return-home-btn {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 18px;
+  position: absolute;
+  top: 15px;
+}
+
+section.invoice-detail-information{
+  width: 65%;
+}
+
+div.status-info-bar{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background-secondary);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 20px;
+}
+
+div.status-info{
+  display: flex;
+  align-items: center;
+}
+
+span.info-status{
+  margin-right: 20px;
+}
+
+
+button.ivoice-detail-edit-btn{
+  background-color: var(--invoice-detail-edit-btn-bg-color);
+  color: var(--invoice-detail-edit-btn-text-color);
+  transition: all .3s;
+}
+
+button.ivoice-detail-delete-btn{
+  background-color: #EC5757;
+  transition: all .3s;
+  margin: 0 10px 0 10px;
+
+}
+
+button.ivoice-detail-paid-btn{
+  background-color: #7C5DFA;
+  transition: all .3s;
+
+}
+
+
+button.ivoice-detail-edit-btn:hover{
+  background-color: var(--invoice-detail-edit-btn-bg-color-hover);
+  /* color: var(--invoice-detail-edit-btn-text-color); */
+}
+
+button.ivoice-detail-delete-btn:hover{
+  background-color: #FF9797;
+
+}
+
+button.ivoice-detail-paid-btn:hover{
+  background-color: #9277FF;
+
+}
+
+
+/* *************************************************Invoice Detail LAYOUT************************************************* */
