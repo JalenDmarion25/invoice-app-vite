@@ -67,6 +67,10 @@ main{
   --invoice-detail-edit-btn-bg-color: #e4e5e9;
   --invoice-detail-edit-btn-text-color: #7E88C3;
   --invoice-detail-edit-btn-bg-color-hover: #DFE3FA;
+  --invoice-detail-info-primary-text-color: #7E88C3;
+  --invoice-detail-item-container-bg: #F9FAFE;
+  --invoice-detail-amount-total-bg: #373B53;
+  --text-color-invert: #111517;
 
 
 
@@ -78,7 +82,7 @@ main{
 
 [data-theme="dark"] {
   --background-main: #141625;
-  --background-secondary: #252945;
+  --background-secondary: #1E2139;
   --text-color: #FFFFFF;
   --dropdown-border: #ffffff3d;
   --text-color-draft: #DFE3FA;
@@ -92,8 +96,14 @@ main{
   --invoice-detail-edit-btn-bg-color: #33385f;
   --invoice-detail-edit-btn-text-color: #DFE3FA;
   --invoice-detail-edit-btn-bg-color-hover: #FFFFFF;
+  --invoice-detail-info-primary-text-color: #DFE3FA;
+  --invoice-detail-item-container-bg: #252945;
+  --invoice-detail-amount-total-bg: #0C0E16;
+  --text-color-invert: #FFFFFF;
+  
 
 
+  
 
 
 
@@ -332,7 +342,7 @@ main.invoice-detail-container{
   flex-direction: column;
   align-items: center;
   color: var(--text-color);
-  padding-top: 50px;
+  padding-top: 75px;
 }
 
 a.return-home-btn {
@@ -340,14 +350,14 @@ a.return-home-btn {
   font-weight: 600;
   font-size: 18px;
   position: absolute;
-  top: 15px;
+  top: 35px;
 }
 
 section.invoice-detail-information{
   width: 65%;
 }
 
-div.status-info-bar{
+div.detail-status-info-bar{
   display: flex;
   justify-content: space-between;
   background-color: var(--background-secondary);
@@ -356,12 +366,12 @@ div.status-info-bar{
   padding: 20px;
 }
 
-div.status-info{
+div.detail-status-info{
   display: flex;
   align-items: center;
 }
 
-span.info-status{
+span.detail-info-status{
   margin-right: 20px;
 }
 
@@ -402,4 +412,125 @@ button.ivoice-detail-paid-btn:hover{
 }
 
 
+div.detail-invoice-info{
+  width: 100%;
+  background-color: var(--background-secondary);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-top: 20px;
+
+}
+
+div.detail-id-desc-billfrom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.detail-invDate-billToName-billToEmail{
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.detail-payDue-billToAddr{
+  width: 37.8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span.detail-id-hash{
+  color: var(--invoice-detail-info-primary-text-color);
+}
+
+p.primary{
+  color: var(--invoice-detail-info-primary-text-color);
+  font-weight: 500;
+}
+
+p.detail-info{
+  margin: 7px 0 7px 0;
+}
+
+p.secondary{
+  color: var(--text-color);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+div.items-container{
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--invoice-detail-item-container-bg);
+  padding: 40px;
+  border-radius: 15px 15px 0  0;
+}
+
+div.item-header{
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+p.item-header-total{
+  position: absolute;
+  right: 0;
+}
+
+p.item-header-price{
+  position: absolute;
+  right: 250px;
+}
+
+p.item-header-qty{
+  position: absolute;
+  right: 450px;
+}
+
+
+div.item-row{
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+/* p.item-name{
+  position: absolute;
+  right: 0;
+} */
+
+p.item-quantity{
+  position: absolute;
+  right: 465px;
+}
+
+p.item-price{
+  position: absolute;
+  right: 250px;
+}
+
+p.item-total{
+  position: absolute;
+  right: 0;
+}
+
+div.amount-total{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--invoice-detail-amount-total-bg);
+  padding: 40px;
+  border-radius: 0 0 15px 15px;
+  color: white;
+}
+
+p.total{
+  font-size: 30px;
+  font-weight: 600;
+}
 /* *************************************************Invoice Detail LAYOUT************************************************* */
