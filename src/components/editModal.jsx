@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "./ui/BaseButton";
 import Calendar from "../components/calender";
+import toast, { Toaster } from 'react-hot-toast';
 import DropdownModal from './dropdownModal';
 import AddItemList from "./addItemList";
 import "../styles/modal.css";
@@ -25,6 +26,7 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
     paymentDue: "",
     description: "",
     items: [],
+    status: "draft", // Default status is draft
   });
 
   useEffect(() => {
@@ -65,8 +67,58 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
     }));
   };
 
+  const validateForm = () => {
+    const requiredFields = [
+      "senderAddress.street",
+      "senderAddress.city",
+      "senderAddress.postCode",
+      "senderAddress.country",
+      "clientName",
+      "clientEmail",
+      "clientAddress.street",
+      "clientAddress.city",
+      "clientAddress.postCode",
+      "clientAddress.country",
+      "createdAt",
+      "paymentDue",
+      "description",
+      "items",
+    ];
+
+    for (const field of requiredFields) {
+      const fieldValue = getFieldByString(formData, field);
+      if (!fieldValue) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const getFieldByString = (object, fieldString) => {
+    const fields = fieldString.split('.');
+    let fieldValue = { ...object };
+    for (const f of fields) {
+      fieldValue = fieldValue[f];
+    }
+    return fieldValue;
+  };
+
   const handleSubmit = (status) => {
-    // Add submit logic
+    if (!validateForm()) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
+
+    const updatedFormData = { ...formData };
+
+    if (status === "pending" && updatedFormData.status !== "pending") {
+      updatedFormData.status = "pending";
+    }
+
+    // Perform save/update logic here with updatedFormData
+    // Example: saveToDatabase(updatedFormData);
+
+    handleCloseModal();
   };
 
   return (
@@ -194,15 +246,17 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
               <Calendar 
                 initialDate={formData.createdAt} 
                 onChange={(date) => setFormData((prevData) => ({ ...prevData, createdAt: date }))} 
-              />            </div>
+              />
+            </div>
             <div className="payment-terms">
-            <DropdownModal
+              <DropdownModal
                 initialOption={{
                   text: `Net ${formData.paymentTerms} Day${formData.paymentTerms > 1 ? 's' : ''}`,
                   value: formData.paymentTerms,
                 }}
                 onChange={(value) => handleChange({ target: { name: 'paymentTerms', value } })}
-              />            </div>
+              />
+            </div>
           </div>
 
           <div className="project-description-container">
@@ -220,12 +274,14 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
             initialItems={formData.items}
             onItemsChange={handleItemsChange}
           />
+
           <div className="edit-modal-button-container">
-            <Button className={"modal-cancel-btn"} onClick={() => handleSubmit("draft")} buttonText={"Cancel"} />
+            <Button className={"modal-cancel-btn"} onClick={() => handleCloseModal()} buttonText={"Cancel"} />
             <Button className={"modal-save-changes-btn"} onClick={() => handleSubmit("pending")} buttonText={"Save Changes"} />
           </div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </section>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CreateModal from "../components/newModal";
 import IconPlus from "../components/icons/PlusIcon";
 import ArrowDown from "../assets/icon-arrow-down.svg";
+import toast, { Toaster } from 'react-hot-toast';
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 

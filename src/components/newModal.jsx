@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Button from "./ui/BaseButton";
+import toast, { Toaster } from "react-hot-toast";
 import Calendar from "./calender";
-import DropdownModal from './dropdownModal';
+import DropdownModal from "./dropdownModal";
 import AddItemList from "./addItemList";
 import "../styles/modal.css";
 
 const NewModal = ({ handleCloseModal }) => {
-
   const getCurrentDate = () => {
     const date = new Date();
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -34,31 +34,35 @@ const NewModal = ({ handleCloseModal }) => {
     paymentDue: "",
     description: "",
     paymentTerms: 0,
-    items: [],  
-    total: 0,   
+    items: [],
+    total: 0,
   });
-
-  
-
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const [section, key] = name.split("-");
     
     if (section === "billFrom" || section === "billTo") {
-      setFormData((prevData) => ({
-        ...prevData,
-        [section]: {
-          ...prevData[section],
-          [key]: value,
-        },
-      }));
+      setFormData((prevData) => {
+        const newFormData = {
+          ...prevData,
+          [section]: {
+            ...prevData[section],
+            [key]: value,
+          },
+        };
+        console.log(newFormData); // Debugging log
+        return newFormData;
+      });
     } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
+      setFormData((prevData) => {
+        const newFormData = {
+          ...prevData,
+          [name]: value,
+        };
+        console.log(newFormData); // Debugging log
+        return newFormData;
+      });
     }
   };
 
@@ -68,7 +72,46 @@ const NewModal = ({ handleCloseModal }) => {
     }
   };
 
+  const validateForm = () => {
+    const requiredFields = [
+      "billFrom.street",
+      "billFrom.city",
+      "billFrom.postCode",
+      "billFrom.country",
+      "billTo.clientName",
+      "billTo.clientEmail",
+      "billTo.street",
+      "billTo.city",
+      "billTo.postCode",
+      "billTo.country",
+      "description",
+      "paymentTerms",
+    ];
+  
+    for (const field of requiredFields) {
+      const [section, key] = field.split(".");
+      if (key) {
+        if (!formData[section] || !formData[section][key]) {
+          console.log(`Validation failed: ${section}.${key} is empty.`);
+          return false;
+        }
+      } else {
+        if (!formData[field]) {
+          console.log(`Validation failed: ${field} is empty.`);
+          return false;
+        }
+      }
+    }
+  
+    return true;
+  };
+
   const handleSubmit = (status) => {
+    if (status === "pending" && !validateForm()) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
+
     const newInvoice = {
       id: generateID(),
       createdAt: formData.createdAt,
@@ -94,27 +137,30 @@ const NewModal = ({ handleCloseModal }) => {
       total: calculateTotal(formData.items),
     };
 
-    const storedData = JSON.parse(sessionStorage.getItem('jsonData')) || [];
+    const storedData = JSON.parse(sessionStorage.getItem("jsonData")) || [];
     storedData.push(newInvoice);
-    sessionStorage.setItem('jsonData', JSON.stringify(storedData));
+    sessionStorage.setItem("jsonData", JSON.stringify(storedData));
     handleCloseModal();
   };
 
   const generateID = () => {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const digits = '0123456789';
-    
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const digits = "0123456789";
+
     let id;
     let exists;
-    const storedData = JSON.parse(sessionStorage.getItem('jsonData')) || [];
-    
+    const storedData = JSON.parse(sessionStorage.getItem("jsonData")) || [];
+
     do {
-      const randomLetters = letters.charAt(Math.floor(Math.random() * letters.length)) +
-                            letters.charAt(Math.floor(Math.random() * letters.length));
-      const randomDigits = Array.from({ length: 4 }, () => digits.charAt(Math.floor(Math.random() * digits.length))).join('');
+      const randomLetters =
+        letters.charAt(Math.floor(Math.random() * letters.length)) +
+        letters.charAt(Math.floor(Math.random() * letters.length));
+      const randomDigits = Array.from({ length: 4 }, () =>
+        digits.charAt(Math.floor(Math.random() * digits.length))
+      ).join("");
       id = randomLetters + randomDigits;
 
-      exists = storedData.some(invoice => invoice.id === id);
+      exists = storedData.some((invoice) => invoice.id === id);
     } while (exists);
 
     return id;
@@ -127,7 +173,7 @@ const NewModal = ({ handleCloseModal }) => {
   const paymentDueCalc = (paymentTerms, createdAt) => {
     const createdDate = new Date(createdAt);
     createdDate.setDate(createdDate.getDate() + parseInt(paymentTerms, 10));
-    return createdDate.toISOString().split('T')[0];
+    return createdDate.toISOString().split("T")[0];
   };
 
   return (
@@ -242,10 +288,33 @@ const NewModal = ({ handleCloseModal }) => {
 
           <div className="date-payment-container">
             <div className="invoice-date">
-              <Calendar onChange={(date) => setFormData((prevData) => ({ ...prevData, createdAt: date }))} />
+              <label>Invoice Date</label>
+              <Calendar
+                value={formData.createdAt}
+                onChange={(date) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    createdAt: date,
+                  }))
+                }
+              />
             </div>
             <div className="payment-terms">
-              <DropdownModal onChange={(terms) => setFormData((prevData) => ({ ...prevData, paymentTerms: terms }))} />
+              <label>Payment Terms</label>
+              <DropdownModal
+                initialOption={{
+                  text: `Net ${formData.paymentTerms} Day${
+                    formData.paymentTerms > 1 ? "s" : ""
+                  }`,
+                  value: formData.paymentTerms,
+                }}
+                onChange={(value) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    paymentTerms: value,
+                  }))
+                }
+              />
             </div>
           </div>
 
@@ -259,19 +328,41 @@ const NewModal = ({ handleCloseModal }) => {
             />
           </div>
 
-          <AddItemList onItemsChange={(items) => setFormData((prevData) => ({ ...prevData, items }))} />
+          <AddItemList
+            initialItems={formData.items}
+            onItemsChange={(items) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                items: items,
+                total: calculateTotal(items),
+              }))
+            }
+          />
 
           <div className="new-modal-button-container">
             <div>
-              <Button className={"modal-discard-btn"} onClick={handleCloseModal} buttonText={"Discard"} />
+              <Button
+                className={"modal-discard-btn"}
+                onClick={handleCloseModal}
+                buttonText={"Discard"}
+              />
             </div>
             <div>
-              <Button className={"modal-save-draft-btn"} onClick={() => handleSubmit("draft")} buttonText={"Save as Draft"} />
-              <Button className={"modal-save-send-btn"} onClick={() => handleSubmit("pending")} buttonText={"Save & Send"} />
+              <Button
+                className={"modal-save-draft-btn"}
+                onClick={() => handleSubmit("draft")}
+                buttonText={"Save as Draft"}
+              />
+              <Button
+                className={"modal-save-send-btn"}
+                onClick={() => handleSubmit("pending")}
+                buttonText={"Save & Send"}
+              />
             </div>
           </div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </section>
   );
 };
