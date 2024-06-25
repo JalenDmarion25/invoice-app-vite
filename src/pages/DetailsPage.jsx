@@ -2,10 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import ArrowLeft from '../assets/icon-arrow-left.svg'
 import Button from '../components/ui/BaseButton';
+import EditModal from "../components/editModal";
+import DeleteModal from "../components/deleteModal";
+
 
 const DetailsPage = () => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [invoiceDetail, setInovoiceDetail] = useState(null);
   const { code } = useParams();
+
+
+
+  const handleOpenModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleDeleteOpenModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
 
   useEffect(() => {
     const jsonData = sessionStorage.getItem("jsonData");
@@ -34,6 +59,9 @@ const DetailsPage = () => {
 
   return (
     <main className="invoice-detail-container">
+      {isEditModalOpen && <EditModal handleCloseModal={handleCloseModal} invoiceDetail={invoiceDetail} />}
+      {isDeleteModalOpen && <DeleteModal handleCloseModal={handleDeleteCloseModal} invoiceDetail={invoiceDetail} />}
+
 
       {invoiceDetail ? (
         <section className="invoice-detail-information">
@@ -68,8 +96,8 @@ const DetailsPage = () => {
 
 
              <div>
-             <Button className={"ivoice-detail-edit-btn"} buttonText={"Edit"} />
-            <Button className={"ivoice-detail-delete-btn"} buttonText={"Delete"} />
+             <Button onClick={handleOpenModal} className={"ivoice-detail-edit-btn"} buttonText={"Edit"} />
+            <Button onClick={handleDeleteOpenModal} className={"ivoice-detail-delete-btn"} buttonText={"Delete"} />
             <Button className={"ivoice-detail-paid-btn"} buttonText={"Mark as Paid"} />
             </div>   
           </div>
@@ -126,10 +154,10 @@ const DetailsPage = () => {
 
                 {invoiceDetail.items.map((item, index) => (
                 <div key={index} className="item-row">
-                  <p className="item-name">{item.name}</p>
-                  <p className="item-quantity">{item.quantity}</p>
-                  <p className="item-price">{item.price.toFixed(2)}</p>
-                  <p className="item-total">{item.total.toFixed(2)}</p>
+                  <p className="item-name secondary">{item.name}</p>
+                  <p className="item-quantity primary">{item.quantity}</p>
+                  <p className="item-price primary">{item.price.toFixed(2)}</p>
+                  <p className="item-total secondary">$ {item.total.toFixed(2)}</p>
                 </div>
               ))}
               </div>

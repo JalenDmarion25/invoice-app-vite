@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/addItemList.css';
 import Button from './ui/BaseButton';
 import DeleteIcon from '../assets/icon-delete.svg';
 
-const AddItemList = ({ onItemsChange }) => {
-  const [items, setItems] = useState([{ id: Date.now(), name: '', quantity: '', price: '', total: 0 }]);
+const AddItemList = ({ initialItems = [], onItemsChange }) => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(initialItems);
+  }, [initialItems]);
 
   const addItem = () => {
-    setItems([...items, { id: Date.now(), name: '', quantity: '', price: '', total: 0 }]);
+    const newItem = { id: Date.now(), name: '', quantity: '', price: '', total: 0 };
+    const newItems = [...items, newItem];
+    setItems(newItems);
+    onItemsChange(newItems);
   };
 
   const deleteItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
+    const newItems = items.filter(item => item.id !== id);
+    setItems(newItems);
+    onItemsChange(newItems);
   };
 
   const handleItemChange = (id, key, value) => {
@@ -25,7 +34,6 @@ const AddItemList = ({ onItemsChange }) => {
     }));
 
     setItems(updatedItemsWithTotal);
-
     onItemsChange(updatedItemsWithTotal);
   };
 
@@ -33,7 +41,7 @@ const AddItemList = ({ onItemsChange }) => {
     <div className="item-list-container">
       <h4 className="modal-bill-headers item-header">Item List</h4>
       
-      {items.length >= 1 && (
+      {items.length > 0 && (
         <div className="item-labels">
           <label className="item-name-label">Item Name</label>
           <label className="item-quantity-label">Qty.</label>
@@ -64,7 +72,7 @@ const AddItemList = ({ onItemsChange }) => {
           />
           <span className="item-total">${item.total.toFixed(2)}</span>
           <button className="delete-item" onClick={() => deleteItem(item.id)}>
-            <img src={DeleteIcon} alt="" />
+            <img src={DeleteIcon} alt="Delete" />
           </button>
         </div>
       ))}

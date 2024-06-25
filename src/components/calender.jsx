@@ -14,14 +14,24 @@ const getFebDays = (year) => {
   return isLeapYear(year) ? 29 : 28;
 }
 
-const Calendar = ({onChange}) => {
-  const [currDate, setCurrDate] = useState(new Date());
+const Calendar = ({ initialDate, onChange }) => {
+  const [currDate, setCurrDate] = useState(initialDate ? new Date(initialDate) : new Date());
   const [currMonth, setCurrMonth] = useState(currDate.getMonth());
   const [currYear, setCurrYear] = useState(currDate.getFullYear());
   const [daysOfMonth, setDaysOfMonth] = useState([]);
   const [showMonthList, setShowMonthList] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  useEffect(() => {
+    if (initialDate) {
+      const date = new Date(initialDate);
+      setCurrDate(date);
+      setCurrMonth(date.getMonth());
+      setCurrYear(date.getFullYear());
+      setSelectedDate(`${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`);
+    }
+  }, [initialDate]);
 
   useEffect(() => {
     generateCalendar(currMonth, currYear);
@@ -60,9 +70,8 @@ const Calendar = ({onChange}) => {
 
   const handleDayClick = (day) => {
     const selectedDate = new Date(currYear, currMonth, day);
-    const jsonDateFormat = `${currYear}-${currMonth}-${day}`;
+    const jsonDateFormat = `${currYear}-${String(currMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const formattedDate = `${day} ${monthNames[currMonth]} ${currYear}`;
-    console.log(`Selected date: ${jsonDateFormat}`);
     setSelectedDate(formattedDate);
     setCalendarVisible(false);
     onChange(jsonDateFormat);
@@ -76,7 +85,7 @@ const Calendar = ({onChange}) => {
     <div className='calendar-container'>
       <div onClick={toggleCalendar} className="calendar-toggle">
         {selectedDate ? selectedDate : 'Select a date'}
-        <img src={CalendarIcon} className='calendar-icon' srcset="" />
+        <img src={CalendarIcon} className='calendar-icon' alt="Calendar" />
       </div>
       {calendarVisible && (
         <div className="calendar">

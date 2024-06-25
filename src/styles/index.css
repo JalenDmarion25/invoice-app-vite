@@ -342,8 +342,7 @@ main.invoice-detail-container{
   flex-direction: column;
   align-items: center;
   color: var(--text-color);
-  padding-top: 75px;
-}
+
 
 a.return-home-btn {
   color: var(--text-color);
@@ -355,6 +354,9 @@ a.return-home-btn {
 
 section.invoice-detail-information{
   width: 65%;
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
 }
 
 div.detail-status-info-bar{
@@ -475,6 +477,9 @@ div.item-header{
   width: 100%;
   display: flex;
   position: relative;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--invoice-detail-info-primary-text-color);
 }
 
 p.item-header-total{
@@ -497,26 +502,40 @@ div.item-row{
   width: 100%;
   display: flex;
   position: relative;
+  font-size: 20px;
+  margin-top: 15px;
 }
 
-/* p.item-name{
-  position: absolute;
+p.item-name{
+  font-size: 20px;
   right: 0;
-} */
+  font-weight: 800;
+
+}
 
 p.item-quantity{
   position: absolute;
   right: 465px;
+  font-size: 20px;
+  font-weight: 800;
+
+
 }
 
 p.item-price{
   position: absolute;
   right: 250px;
+  font-size: 20px;
+  font-weight: 800;
+
 }
 
 p.item-total{
   position: absolute;
   right: 0;
+  font-size: 20px;
+  font-weight: 800;
+
 }
 
 div.amount-total{
