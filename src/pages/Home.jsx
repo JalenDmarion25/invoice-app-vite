@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import CreateModal from "../components/newModal";
 import IconPlus from "../components/icons/PlusIcon";
 import ArrowDown from "../assets/icon-arrow-down.svg";
+import NoInvoiceFound from "../components/NoInvoiceFound";
 import toast, { Toaster } from 'react-hot-toast';
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const url = "https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json";
@@ -198,7 +200,9 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div>No invoices found.</div>
+          <div>
+            <NoInvoiceFound/>
+          </div>
         )}
       </div>
     </section>

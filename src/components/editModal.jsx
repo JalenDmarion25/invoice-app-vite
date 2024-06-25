@@ -26,7 +26,7 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
     paymentDue: "",
     description: "",
     items: [],
-    status: "draft", // Default status is draft
+    status: "draft",
   });
 
   useEffect(() => {
@@ -109,16 +109,25 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
       return;
     }
 
-    const updatedFormData = { ...formData };
+    const existingData = JSON.parse(sessionStorage.getItem("jsonData")) || [];
 
-    if (status === "pending" && updatedFormData.status !== "pending") {
-      updatedFormData.status = "pending";
-    }
+    const updatedData = existingData.map(item => {
+      if (item.id === invoiceDetail.id) {
+        return {
+          ...formData,
+          status: status === "pending" ? "pending" : formData.status,
+        };
+      }
+      return item;
+    });
 
-    // Perform save/update logic here with updatedFormData
-    // Example: saveToDatabase(updatedFormData);
+    sessionStorage.setItem("jsonData", JSON.stringify(updatedData));
 
-    handleCloseModal();
+       toast.success("Changes saved successfully.");
+
+       handleCloseModal();
+   
+       window.location.reload();
   };
 
   return (

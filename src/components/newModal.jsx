@@ -41,7 +41,7 @@ const NewModal = ({ handleCloseModal }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const [section, key] = name.split("-");
-    
+
     if (section === "billFrom" || section === "billTo") {
       setFormData((prevData) => {
         const newFormData = {
@@ -87,7 +87,7 @@ const NewModal = ({ handleCloseModal }) => {
       "description",
       "paymentTerms",
     ];
-  
+
     for (const field of requiredFields) {
       const [section, key] = field.split(".");
       if (key) {
@@ -102,7 +102,7 @@ const NewModal = ({ handleCloseModal }) => {
         }
       }
     }
-  
+
     return true;
   };
 
@@ -141,6 +141,8 @@ const NewModal = ({ handleCloseModal }) => {
     storedData.push(newInvoice);
     sessionStorage.setItem("jsonData", JSON.stringify(storedData));
     handleCloseModal();
+    window.location.reload();
+
   };
 
   const generateID = () => {
