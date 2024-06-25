@@ -168,7 +168,8 @@ const Home = () => {
                 to={`/invoice-app-vite/details/${invoice.id}`}
                 key={invoice.id}>
                 <div key={index} className="invoice-item">
-                  <p className="invoice-id">#{invoice.id}</p>
+                  <p className="invoice-id"><span className="detail-id-hash">#</span>{invoice.id}</p>
+                  <p className="invoice-paymentdue">Due {invoice.paymentDue}</p>
                   <p className="invoice-client">{invoice.clientName}</p>
                   <p className="invoice-total">${invoice.total}</p>
                   <p
