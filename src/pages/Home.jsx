@@ -3,15 +3,15 @@ import CreateModal from "../components/newModal";
 import IconPlus from "../components/icons/PlusIcon";
 import ArrowDown from "../assets/icon-arrow-down.svg";
 import NoInvoiceFound from "../components/NoInvoiceFound";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const url = "https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json";
+  const url =
+    "https://jalendmarion25.github.io/invoice-app-api-endpoint/invoices.json";
   const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -65,7 +65,7 @@ const Home = () => {
     }
   }, [url]);
 
-  const filteredInvoices = jsonData.filter(invoice => {
+  const filteredInvoices = jsonData.filter((invoice) => {
     if (!filters.draft && !filters.pending && !filters.paid) {
       return true;
     }
@@ -88,7 +88,7 @@ const Home = () => {
         <div className="invoice-new-filter">
           <div className="invoice-filter">
             <span onClick={handleFilter} className="filter-dropdown">
-              Filter by status <img src={ArrowDown} alt="arwDwn"/>
+              Filter by status <img src={ArrowDown} alt="arwDwn" />
             </span>
 
             {isFilterOpen && (
@@ -111,7 +111,9 @@ const Home = () => {
                     }}
                     disableRipple
                   />
-                  <label htmlFor="draft">Draft</label>
+                  <label className="home-labels" htmlFor="draft">
+                    Draft
+                  </label>
                 </div>
                 <div className="filter-option-check">
                   <Checkbox
@@ -131,7 +133,9 @@ const Home = () => {
                     }}
                     disableRipple
                   />
-                  <label htmlFor="pending">Pending</label>
+                  <label className="home-labels" htmlFor="pending">
+                    Pending
+                  </label>
                 </div>
                 <div className="filter-option-check">
                   <Checkbox
@@ -151,7 +155,9 @@ const Home = () => {
                     }}
                     disableRipple
                   />
-                  <label htmlFor="paid">Paid</label>
+                  <label className="home-labels" htmlFor="paid">
+                    Paid
+                  </label>
                 </div>
               </div>
             )}
@@ -163,18 +169,114 @@ const Home = () => {
         </div>
       </div>
 
+      <div className="info-bar-mobile">
+        <div className="invoice-info">
+          <h1>Invoices</h1>
+          <span>{filteredInvoices.length} invoices</span>
+        </div>
+
+        <div className="invoice-new-filter">
+          <div className="invoice-filter">
+            <span onClick={handleFilter} className="filter-dropdown">
+              Filter<img src={ArrowDown} alt="arwDwn" />
+            </span>
+
+            {isFilterOpen && (
+              <div className="filter-options">
+                <div className="filter-option-check">
+                  <Checkbox
+                    name="draft"
+                    id="draft"
+                    checked={filters.draft}
+                    onChange={handleCheckboxChange}
+                    sx={{
+                      padding: 0,
+                      color: "#9277FF",
+                      "&.Mui-checked": {
+                        color: "#9277FF",
+                      },
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                      },
+                    }}
+                    disableRipple
+                  />
+                  <label className="home-labels" htmlFor="draft">
+                    Draft
+                  </label>
+                </div>
+                <div className="filter-option-check">
+                  <Checkbox
+                    name="pending"
+                    id="pending"
+                    checked={filters.pending}
+                    onChange={handleCheckboxChange}
+                    sx={{
+                      padding: 0,
+                      color: "#9277FF",
+                      "&.Mui-checked": {
+                        color: "#9277FF",
+                      },
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                      },
+                    }}
+                    disableRipple
+                  />
+                  <label className="home-labels" htmlFor="pending">
+                    Pending
+                  </label>
+                </div>
+                <div className="filter-option-check">
+                  <Checkbox
+                    name="paid"
+                    id="paid"
+                    checked={filters.paid}
+                    onChange={handleCheckboxChange}
+                    sx={{
+                      padding: 0,
+                      color: "#9277FF",
+                      "&.Mui-checked": {
+                        color: "#9277FF",
+                      },
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                      },
+                    }}
+                    disableRipple
+                  />
+                  <label className="home-labels" htmlFor="paid">
+                    Paid
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
+          <button onClick={handleOpenModal} className="invoice-new-btn">
+            <IconPlus className="icon-plus" />
+            New
+          </button>
+        </div>
+      </div>
+
+
+
       <div className="invoice-list-container">
         {filteredInvoices.length > 0 ? (
           <div className="invoice-list">
             {filteredInvoices.map((invoice, index) => (
-              <Link 
+              <Link
                 to={`/invoice-app-vite/details/${invoice.id}`}
-                key={invoice.id}>
+                key={invoice.id}
+              >
                 <div key={index} className="invoice-item">
-                  <p className="invoice-id"><span className="detail-id-hash">#</span>{invoice.id}</p>
+                  <p className="invoice-id">
+                    <span className="detail-id-hash">#</span>
+                    {invoice.id}
+                  </p>
                   <p className="invoice-paymentdue">Due {invoice.paymentDue}</p>
                   <p className="invoice-client">{invoice.clientName}</p>
-                  <p className="invoice-total">${invoice.total}</p>
+                  <p className="invoice-total">$ {invoice.total}</p>
                   <p
                     className={`${
                       invoice.status === "paid"
@@ -196,12 +298,48 @@ const Home = () => {
                     {invoice.status}
                   </p>
                 </div>
+
+                <div key={index} className="invoice-item-mobile">
+                  <div>
+                    <p className="invoice-id">
+                      <span className="detail-id-hash">#</span>
+                      {invoice.id}
+                    </p>
+                    <p className="invoice-paymentdue">
+                      Due {invoice.paymentDue}
+                    </p>
+                    <p className="invoice-total">$ {invoice.total}</p>
+                  </div>
+                  <div>
+                    <p className="invoice-client">{invoice.clientName}</p>
+                    <p
+                      className={`${
+                        invoice.status === "paid"
+                          ? "paid__status"
+                          : invoice.status === "pending"
+                          ? "pending__status"
+                          : "draft__status"
+                      }`}
+                    >
+                      <span
+                        className={`${
+                          invoice.status === "paid"
+                            ? "paid__span"
+                            : invoice.status === "pending"
+                            ? "pending__span"
+                            : "draft__span"
+                        }`}
+                      ></span>{" "}
+                      {invoice.status}
+                    </p>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
         ) : (
           <div>
-            <NoInvoiceFound/>
+            <NoInvoiceFound />
           </div>
         )}
       </div>
