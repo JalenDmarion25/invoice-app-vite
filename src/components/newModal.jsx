@@ -142,7 +142,6 @@ const NewModal = ({ handleCloseModal }) => {
     sessionStorage.setItem("jsonData", JSON.stringify(storedData));
     handleCloseModal();
     window.location.reload();
-
   };
 
   const generateID = () => {
@@ -363,6 +362,24 @@ const NewModal = ({ handleCloseModal }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="new-modal-button-container-mobile">
+        <Button
+          className={"modal-discard-btn"}
+          onClick={handleCloseModal}
+          buttonText={"Discard"}
+        />
+
+        <Button
+          className={"modal-save-draft-btn"}
+          onClick={() => handleSubmit("draft")}
+          buttonText={"Save as Draft"}
+        />
+        <Button
+          className={"modal-save-send-btn"}
+          onClick={() => handleSubmit("pending")}
+          buttonText={"Save & Send"}
+        />
       </div>
       <Toaster position="top-right" reverseOrder={false} />
     </section>

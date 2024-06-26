@@ -290,6 +290,10 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
           </div>
         </div>
       </div>
+      <div className="edit-modal-button-container-mobile">
+            <Button className={"modal-cancel-btn"} onClick={() => handleCloseModal()} buttonText={"Cancel"} />
+            <Button className={"modal-save-changes-btn"} onClick={() => handleSubmit("pending")} buttonText={"Save Changes"} />
+          </div>
       <Toaster position="top-right" reverseOrder={false} />
     </section>
   );
