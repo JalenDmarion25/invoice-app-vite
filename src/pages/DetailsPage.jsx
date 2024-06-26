@@ -34,12 +34,12 @@ const DetailsPage = () => {
       status: "paid",
     };
 
-    window.location.href = `/invoice-app-vite/details/${invoiceDetail.id}`;
 
     try {
       const jsonData = sessionStorage.getItem("jsonData");
       let dataArray = JSON.parse(jsonData);
       const index = dataArray.findIndex((invoice) => invoice.id === code);
+      window.location.href = `/invoice-app-vite/details/${invoiceDetail.id}`;
       if (index !== -1) {
         dataArray[index] = updatedInvoiceDetail;
 
