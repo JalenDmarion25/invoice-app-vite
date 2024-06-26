@@ -65,7 +65,6 @@ const DetailsPage = () => {
           const invoiceDetail = dataArray.find(
             (invoice) => invoice.id === code
           );
-          console.log(invoiceDetail);
 
           setInovoiceDetail(invoiceDetail);
         } else {

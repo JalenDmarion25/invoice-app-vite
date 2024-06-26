@@ -51,7 +51,6 @@ const NewModal = ({ handleCloseModal }) => {
             [key]: value,
           },
         };
-        console.log(newFormData); // Debugging log
         return newFormData;
       });
     } else {
@@ -60,7 +59,6 @@ const NewModal = ({ handleCloseModal }) => {
           ...prevData,
           [name]: value,
         };
-        console.log(newFormData); // Debugging log
         return newFormData;
       });
     }
@@ -92,12 +90,10 @@ const NewModal = ({ handleCloseModal }) => {
       const [section, key] = field.split(".");
       if (key) {
         if (!formData[section] || !formData[section][key]) {
-          console.log(`Validation failed: ${section}.${key} is empty.`);
           return false;
         }
       } else {
         if (!formData[field]) {
-          console.log(`Validation failed: ${field} is empty.`);
           return false;
         }
       }
