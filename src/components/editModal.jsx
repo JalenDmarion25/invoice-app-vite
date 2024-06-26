@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Button from "./ui/BaseButton";
 import Calendar from "../components/calender";
-import toast, { Toaster } from 'react-hot-toast';
-import DropdownModal from './dropdownModal';
+import toast, { Toaster } from "react-hot-toast";
+import DropdownModal from "./dropdownModal";
 import AddItemList from "./addItemList";
 import "../styles/modal.css";
 
@@ -95,7 +95,7 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
   };
 
   const getFieldByString = (object, fieldString) => {
-    const fields = fieldString.split('.');
+    const fields = fieldString.split(".");
     let fieldValue = { ...object };
     for (const f of fields) {
       fieldValue = fieldValue[f];
@@ -111,7 +111,7 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
 
     const existingData = JSON.parse(sessionStorage.getItem("jsonData")) || [];
 
-    const updatedData = existingData.map(item => {
+    const updatedData = existingData.map((item) => {
       if (item.id === invoiceDetail.id) {
         return {
           ...formData,
@@ -123,11 +123,11 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
 
     sessionStorage.setItem("jsonData", JSON.stringify(updatedData));
 
-       toast.success("Changes saved successfully.");
+    toast.success("Changes saved successfully.");
 
-       handleCloseModal();
-   
-       window.location.reload();
+    handleCloseModal();
+
+    window.location.reload();
   };
 
   return (
@@ -145,7 +145,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                 name="street"
                 className="invoice-inputs single-line-input"
                 value={formData.senderAddress.street}
-                onChange={(e) => handleNestedChange(e, "senderAddress", "street")}
+                onChange={(e) =>
+                  handleNestedChange(e, "senderAddress", "street")
+                }
               />
             </div>
 
@@ -157,7 +159,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="city"
                   className="invoice-inputs three-shared-input"
                   value={formData.senderAddress.city}
-                  onChange={(e) => handleNestedChange(e, "senderAddress", "city")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "city")
+                  }
                 />
               </div>
               <div className="bill-from-post">
@@ -167,7 +171,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="postCode"
                   className="invoice-inputs three-shared-input"
                   value={formData.senderAddress.postCode}
-                  onChange={(e) => handleNestedChange(e, "senderAddress", "postCode")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "postCode")
+                  }
                 />
               </div>
               <div className="bill-from-country">
@@ -177,10 +183,67 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="country"
                   className="invoice-inputs three-shared-input"
                   value={formData.senderAddress.country}
-                  onChange={(e) => handleNestedChange(e, "senderAddress", "country")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "country")
+                  }
                 />
               </div>
             </div>
+          </div>
+
+          <div className="new-invoice-bill-from-mobile">
+            <h4 className="modal-bill-headers">Bill From</h4>
+            <div className="bill-from-adi-container">
+              <label htmlFor="billFrom-street">Street Address</label>
+              <input
+                type="text"
+                name="street"
+                className="invoice-inputs single-line-input"
+                value={formData.senderAddress.street}
+                onChange={(e) =>
+                  handleNestedChange(e, "senderAddress", "street")
+                }
+              />
+            </div>
+
+            <div className="bill-from-city-post-country">
+              <div className="bill-from-city">
+                <label htmlFor="billFrom-city">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  className="invoice-inputs two-shared-input"
+                  value={formData.senderAddress.city}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "city")
+                  }
+                />
+              </div>
+              <div className="bill-from-post">
+                <label htmlFor="billFrom-postCode">Post Code</label>
+                <input
+                  type="text"
+                  name="postCode"
+                  className="invoice-inputs two-shared-input"
+                  value={formData.senderAddress.postCode}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "postCode")
+                  }
+                />
+              </div>
+            </div>
+            <div className="bill-from-country">
+                <label htmlFor="billFrom-country">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  className="invoice-inputs single-line-input"
+                  value={formData.senderAddress.country}
+                  onChange={(e) =>
+                    handleNestedChange(e, "senderAddress", "country")
+                  }
+                />
+              </div>
           </div>
 
           <div className="bill-to-container">
@@ -212,7 +275,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                 name="street"
                 className="invoice-inputs single-line-input"
                 value={formData.clientAddress.street}
-                onChange={(e) => handleNestedChange(e, "clientAddress", "street")}
+                onChange={(e) =>
+                  handleNestedChange(e, "clientAddress", "street")
+                }
               />
             </div>
 
@@ -224,7 +289,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="city"
                   className="invoice-inputs three-shared-input"
                   value={formData.clientAddress.city}
-                  onChange={(e) => handleNestedChange(e, "clientAddress", "city")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "city")
+                  }
                 />
               </div>
               <div className="bill-to-post">
@@ -234,7 +301,9 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="postCode"
                   className="invoice-inputs three-shared-input"
                   value={formData.clientAddress.postCode}
-                  onChange={(e) => handleNestedChange(e, "clientAddress", "postCode")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "postCode")
+                  }
                 />
               </div>
               <div className="bill-to-country">
@@ -244,26 +313,109 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
                   name="country"
                   className="invoice-inputs three-shared-input"
                   value={formData.clientAddress.country}
-                  onChange={(e) => handleNestedChange(e, "clientAddress", "country")}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "country")
+                  }
                 />
               </div>
             </div>
           </div>
 
+          <div className="bill-to-container-mobile">
+            <h4 className="modal-bill-headers">Bill To</h4>
+            <div className="bill-to-client-name-container">
+              <label htmlFor="billTo-clientName">Client's Name</label>
+              <input
+                type="text"
+                name="clientName"
+                className="invoice-inputs single-line-input"
+                value={formData.clientName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="bill-to-client-mail-container">
+              <label htmlFor="billTo-clientEmail">Client's Email</label>
+              <input
+                type="text"
+                name="clientEmail"
+                className="invoice-inputs single-line-input"
+                value={formData.clientEmail}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="bill-to-client-adi-container">
+              <label htmlFor="billTo-street">Street Address</label>
+              <input
+                type="text"
+                name="street"
+                className="invoice-inputs single-line-input"
+                value={formData.clientAddress.street}
+                onChange={(e) =>
+                  handleNestedChange(e, "clientAddress", "street")
+                }
+              />
+            </div>
+
+            <div className="bill-to-city-post-country">
+              <div className="bill-to-city">
+                <label htmlFor="billTo-city">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  className="invoice-inputs two-shared-input"
+                  value={formData.clientAddress.city}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "city")
+                  }
+                />
+              </div>
+              <div className="bill-to-post">
+                <label htmlFor="billTo-postCode">Post Code</label>
+                <input
+                  type="text"
+                  name="postCode"
+                  className="invoice-inputs two-shared-input"
+                  value={formData.clientAddress.postCode}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "postCode")
+                  }
+                />
+              </div>
+            </div>
+            <div className="bill-to-country">
+                <label htmlFor="billTo-country">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  className="invoice-inputs single-line-input"
+                  value={formData.clientAddress.country}
+                  onChange={(e) =>
+                    handleNestedChange(e, "clientAddress", "country")
+                  }
+                />
+              </div>
+          </div>
+
           <div className="date-payment-container">
             <div className="invoice-date">
-              <Calendar 
-                initialDate={formData.createdAt} 
-                onChange={(date) => setFormData((prevData) => ({ ...prevData, createdAt: date }))} 
+              <Calendar
+                initialDate={formData.createdAt}
+                onChange={(date) =>
+                  setFormData((prevData) => ({ ...prevData, createdAt: date }))
+                }
               />
             </div>
             <div className="payment-terms">
               <DropdownModal
                 initialOption={{
-                  text: `Net ${formData.paymentTerms} Day${formData.paymentTerms > 1 ? 's' : ''}`,
+                  text: `Net ${formData.paymentTerms} Day${
+                    formData.paymentTerms > 1 ? "s" : ""
+                  }`,
                   value: formData.paymentTerms,
                 }}
-                onChange={(value) => handleChange({ target: { name: 'paymentTerms', value } })}
+                onChange={(value) =>
+                  handleChange({ target: { name: "paymentTerms", value } })
+                }
               />
             </div>
           </div>
@@ -285,15 +437,31 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
           />
 
           <div className="edit-modal-button-container">
-            <Button className={"modal-cancel-btn"} onClick={() => handleCloseModal()} buttonText={"Cancel"} />
-            <Button className={"modal-save-changes-btn"} onClick={() => handleSubmit("pending")} buttonText={"Save Changes"} />
+            <Button
+              className={"modal-cancel-btn"}
+              onClick={() => handleCloseModal()}
+              buttonText={"Cancel"}
+            />
+            <Button
+              className={"modal-save-changes-btn"}
+              onClick={() => handleSubmit("pending")}
+              buttonText={"Save Changes"}
+            />
           </div>
         </div>
       </div>
       <div className="edit-modal-button-container-mobile">
-            <Button className={"modal-cancel-btn"} onClick={() => handleCloseModal()} buttonText={"Cancel"} />
-            <Button className={"modal-save-changes-btn"} onClick={() => handleSubmit("pending")} buttonText={"Save Changes"} />
-          </div>
+        <Button
+          className={"modal-cancel-btn"}
+          onClick={() => handleCloseModal()}
+          buttonText={"Cancel"}
+        />
+        <Button
+          className={"modal-save-changes-btn"}
+          onClick={() => handleSubmit("pending")}
+          buttonText={"Save Changes"}
+        />
+      </div>
       <Toaster position="top-right" reverseOrder={false} />
     </section>
   );

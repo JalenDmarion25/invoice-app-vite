@@ -195,10 +195,6 @@ button.modal-save-send-btn{
 
 }
 
-button.modal-save-send-btn:hover{
-
-}
-
 
 /* *********************************************************** EDIT MODAL *********************************************************** */
 
@@ -275,6 +271,11 @@ div.delete-modal-btn-container {
 
 
 @media screen and (max-width: 680px) {
+
+    input.two-shared-input{
+        width: 120px;
+    }
+
     div.new-form-container {
         width: 100%;
         height: 100%;
@@ -282,7 +283,7 @@ div.delete-modal-btn-container {
         overflow: auto;
     }
 
-    div.bill-from-city-post-country{
+    div.new-invoice-bill-from{
         display: none;
     }
 
@@ -290,12 +291,14 @@ div.delete-modal-btn-container {
         display: none;
     }
 
-    div.bill-from-city-post-country-mobile{
+    div.new-invoice-bill-from-mobile {
         display: block;
     }
 
+
     div.bill-to-container-mobile{
         display: block;
+        margin-top: 40px;
     }
 
     div.bill-from-country, div.bill-to-country {
