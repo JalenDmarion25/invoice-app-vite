@@ -19,12 +19,6 @@ function App() {
     path="/invoice-app-vite/"
     element={<Home />}
     />
-{/* 
-<Routes>
-    <Route
-    path="/invoice-app-vite/"
-    element={<TESTING />}
-    /> */}
 
 <Route
     path="/invoice-app-vite/details/:code"
