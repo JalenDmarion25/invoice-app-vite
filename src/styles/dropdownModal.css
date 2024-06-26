@@ -58,4 +58,23 @@ div.dropdown-option:hover{
 }
 
 
+@media screen and (max-width: 680px) {
+
+    div.dropdown-input{
+        height: 48px;
+        width: 100%;
+        position: relative;
+        color: var(--text-color);
+        border: 1px solid var(--modal-input-border);
+        background-color: var(--background-secondary);
+        padding: 0 15px 0 15px;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        align-content: center;
+        margin: 20px 0 20px 0;
+    }
+}
+
 

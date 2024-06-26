@@ -222,6 +222,52 @@ const NewModal = ({ handleCloseModal }) => {
             </div>
           </div>
 
+
+          <div className="new-invoice-bill-from-mobile">
+            <h4 className="modal-bill-headers">Bill From</h4>
+            <div className="bill-from-adi-container">
+              <label htmlFor="billFrom-street">Street Address</label>
+              <input
+                type="text"
+                name="billFrom-street"
+                className="invoice-inputs single-line-input"
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="bill-from-city-post-country">
+              <div className="bill-from-city">
+                <label htmlFor="billFrom-city">City</label>
+                <input
+                  type="text"
+                  name="billFrom-city"
+                  className="invoice-inputs two-shared-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="bill-from-post">
+                <label htmlFor="billFrom-postCode">Post Code</label>
+                <input
+                  type="text"
+                  name="billFrom-postCode"
+                  className="invoice-inputs two-shared-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div className="bill-from-country">
+                <label htmlFor="billFrom-country">Country</label>
+                <input
+                  type="text"
+                  name="billFrom-country"
+                  className="invoice-inputs single-line-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+          </div>
+
+
           <div className="bill-to-container">
             <h4 className="modal-bill-headers">Bill To</h4>
             <div className="bill-to-client-name-container">
@@ -282,6 +328,70 @@ const NewModal = ({ handleCloseModal }) => {
               </div>
             </div>
           </div>
+
+
+          <div className="bill-to-container-mobile">
+            <h4 className="modal-bill-headers">Bill To</h4>
+            <div className="bill-to-client-name-container">
+              <label htmlFor="billTo-clientName">Client's Name</label>
+              <input
+                type="text"
+                name="billTo-clientName"
+                className="invoice-inputs single-line-input"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="bill-to-client-mail-container">
+              <label htmlFor="billTo-clientEmail">Client's Email</label>
+              <input
+                type="text"
+                name="billTo-clientEmail"
+                className="invoice-inputs single-line-input"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="bill-to-client-adi-container">
+              <label htmlFor="billTo-street">Street Address</label>
+              <input
+                type="text"
+                name="billTo-street"
+                className="invoice-inputs single-line-input"
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="bill-to-city-post-country">
+              <div className="bill-to-city">
+                <label htmlFor="billTo-city">City</label>
+                <input
+                  type="text"
+                  name="billTo-city"
+                  className="invoice-inputs two-shared-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="bill-to-post">
+                <label htmlFor="billTo-postCode">Post Code</label>
+                <input
+                  type="text"
+                  name="billTo-postCode"
+                  className="invoice-inputs two-shared-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+
+            </div>
+            <div className="bill-to-country">
+                <label htmlFor="billTo-country">Country</label>
+                <input
+                  type="text"
+                  name="billTo-country"
+                  className="invoice-inputs single-line-input"
+                  onChange={handleInputChange}
+                />
+              </div>
+          </div>
+
 
           <div className="date-payment-container">
             <div className="invoice-date">

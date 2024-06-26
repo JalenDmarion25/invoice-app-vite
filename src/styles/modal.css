@@ -7,6 +7,14 @@ section.modal-background{
     cursor: pointer;
 }
 
+div.bill-to-container-mobile{
+    display: none;
+}
+
+div.new-invoice-bill-from-mobile{
+    display: none;
+}
+
 h2{
     margin-bottom: 35px;
 }
@@ -274,6 +282,29 @@ div.delete-modal-btn-container {
         overflow: auto;
     }
 
+    div.bill-from-city-post-country{
+        display: none;
+    }
+
+    div.bill-to-container{
+        display: none;
+    }
+
+    div.bill-from-city-post-country-mobile{
+        display: block;
+    }
+
+    div.bill-to-container-mobile{
+        display: block;
+    }
+
+    div.bill-from-country, div.bill-to-country {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 10px 0 10px 0;
+    }
+
     div.new-modal-button-container-mobile {
     
             width: 100%;
@@ -319,5 +350,11 @@ div.delete-modal-btn-container {
         color: var(--save-as-draft-button-text-color);
         margin: 0 10px 0 10px;
         transition: all .3s;
+    }
+
+    div.date-payment-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
     }
 }

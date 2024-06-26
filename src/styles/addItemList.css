@@ -7,14 +7,16 @@ div.item-list{
     margin-bottom: 15px;
 }
 
+div.item-list-mobile{
+    display: none;
+}
+
 div.item-labels{
     position: relative;
     margin-bottom: 10px;
 }
 
-label.item-name-label{
 
-}
 
 label.item-quantity-label{
     position: absolute;
@@ -81,4 +83,120 @@ button.delete-item{
     border: 0;
     cursor: pointer;
     margin: auto 0 auto 0;
+}
+
+@media screen and (max-width: 680px) {
+
+    div.item-labels{
+        display: none;
+    }
+
+    div.item-list{
+        display: none;
+    }
+
+    div.item-list-mobile{
+        position: relative;
+        display: flex;
+        font-weight: 600;
+        font-size: 18px;
+        justify-content: normal;
+        margin-bottom: 15px;
+        flex-direction: column;
+    }
+
+    div.item-list-mobile input{
+        height: 48px;
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--text-color);
+        border: 1px solid var(--modal-input-border);
+        background-color: var(--background-secondary);
+        border-radius: 5px;
+    }
+
+    div.item-list-mobile input.item-name{
+        height: 48px;
+        width: 100%;
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--text-color);
+        border: 1px solid var(--modal-input-border);
+        background-color: var(--background-secondary);
+        border-radius: 5px;
+    }
+
+    
+    
+    div.item-list-mobile input:focus{
+        outline: 1px solid #7C5DFA;
+    }
+
+
+    label.item-quantity-label{
+        position: relative;
+        right: 0;
+    }
+    
+    label.item-price-label{
+        position: relative;
+        right: 0;
+    }
+    
+    label.item-total-label{
+        position: relative;
+        right: 0;
+    }
+
+    span.item-total{
+        height: 100%;
+        align-content: center;
+        text-align: center;
+        position: relative;
+        right: 0;
+    }
+    
+    button.delete-item{
+        height: 100%;
+        position: relative;
+        right: 0;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        margin: auto 0 auto 0;
+    }
+
+    div.mobile-item-name-cont{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    div.mobile-name-qty-price{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    div.mobile-item-name-cont,
+    div.mobile-item-qty-cont,
+    div.mobile-item-price-cont,
+    div.mobile-item-total-cont{
+        display: flex;
+        flex-direction: column;
+    }
+
+    input.item-quantity{
+        width: 50px;
+        text-align: center;
+        padding: 0 0 0 0;
+        margin-left: 0px;
+    
+    }
+    
+    input.item-price{
+        width: 100px;
+        padding: 0 15px 0 15px;
+        margin-left: 0px;
+    }
 }
