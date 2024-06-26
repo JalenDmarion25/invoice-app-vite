@@ -259,17 +259,15 @@ const Home = () => {
         </div>
       </div>
 
-
-
       <div className="invoice-list-container">
         {filteredInvoices.length > 0 ? (
           <div className="invoice-list">
-            {filteredInvoices.map((invoice, index) => (
+            {filteredInvoices.map((invoice) => (
               <Link
                 to={`/invoice-app-vite/details/${invoice.id}`}
                 key={invoice.id}
               >
-                <div key={index} className="invoice-item">
+                <div className="invoice-item">
                   <p className="invoice-id">
                     <span className="detail-id-hash">#</span>
                     {invoice.id}
@@ -299,7 +297,7 @@ const Home = () => {
                   </p>
                 </div>
 
-                <div key={index} className="invoice-item-mobile">
+                <div className="invoice-item-mobile">
                   <div>
                     <p className="invoice-id">
                       <span className="detail-id-hash">#</span>
