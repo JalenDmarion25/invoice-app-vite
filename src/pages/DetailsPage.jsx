@@ -37,8 +37,7 @@ const DetailsPage = () => {
     try {
       const jsonData = sessionStorage.getItem("jsonData");
       let dataArray = JSON.parse(jsonData);
-      window.location.reload();
-
+      window.location.href = `/invoice-app-vite/details/${invoiceDetail.id}`;
       const index = dataArray.findIndex((invoice) => invoice.id === code);
       if (index !== -1) {
         dataArray[index] = updatedInvoiceDetail;
@@ -298,53 +297,51 @@ const DetailsPage = () => {
           </div>
 
           <div className="mobile-button-container">
-          {invoiceDetail.status === "pending" && (
-            <>
-              <Button
-                onClick={handleOpenModal}
-                className={"ivoice-detail-edit-btn"}
-                buttonText={"Edit"}
-              />
+            {invoiceDetail.status === "pending" && (
+              <>
+                <Button
+                  onClick={handleOpenModal}
+                  className={"ivoice-detail-edit-btn"}
+                  buttonText={"Edit"}
+                />
+                <Button
+                  onClick={handleDeleteOpenModal}
+                  className={"ivoice-detail-delete-btn"}
+                  buttonText={"Delete"}
+                />
+                <Button
+                  onClick={markAsPaid}
+                  className={"ivoice-detail-paid-btn"}
+                  buttonText={"Mark as Paid"}
+                />
+              </>
+            )}
+            {invoiceDetail.status === "draft" && (
+              <>
+                <Button
+                  onClick={handleOpenModal}
+                  className={"ivoice-detail-edit-btn"}
+                  buttonText={"Edit"}
+                />
+                <Button
+                  onClick={handleDeleteOpenModal}
+                  className={"ivoice-detail-delete-btn"}
+                  buttonText={"Delete"}
+                />
+              </>
+            )}
+            {invoiceDetail.status === "paid" && (
               <Button
                 onClick={handleDeleteOpenModal}
                 className={"ivoice-detail-delete-btn"}
                 buttonText={"Delete"}
               />
-              <Button
-                onClick={markAsPaid}
-                className={"ivoice-detail-paid-btn"}
-                buttonText={"Mark as Paid"}
-              />
-            </>
-          )}
-          {invoiceDetail.status === "draft" && (
-            <>
-              <Button
-                onClick={handleOpenModal}
-                className={"ivoice-detail-edit-btn"}
-                buttonText={"Edit"}
-              />
-              <Button
-                onClick={handleDeleteOpenModal}
-                className={"ivoice-detail-delete-btn"}
-                buttonText={"Delete"}
-              />
-            </>
-          )}
-          {invoiceDetail.status === "paid" && (
-            <Button
-              onClick={handleDeleteOpenModal}
-              className={"ivoice-detail-delete-btn"}
-              buttonText={"Delete"}
-            />
-          )}
-      </div>
+            )}
+          </div>
         </section>
       ) : (
         <p>Loading...</p>
       )}
-
-
     </main>
   );
 };
