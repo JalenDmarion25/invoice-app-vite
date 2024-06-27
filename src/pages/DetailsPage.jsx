@@ -11,6 +11,7 @@ const DetailsPage = () => {
 
   const [invoiceDetail, setInovoiceDetail] = useState(null);
   const { code } = useParams();
+  
 
   const handleOpenModal = () => {
     setIsEditModalOpen(true);
@@ -39,11 +40,12 @@ const DetailsPage = () => {
       const jsonData = sessionStorage.getItem("jsonData");
       let dataArray = JSON.parse(jsonData);
       const index = dataArray.findIndex((invoice) => invoice.id === code);
-      window.location.href = `/invoice-app-vite/details/${invoiceDetail.id}`;
+      
       if (index !== -1) {
         dataArray[index] = updatedInvoiceDetail;
 
         sessionStorage.setItem("jsonData", JSON.stringify(dataArray));
+        window.location.href = `/invoice-app-vite/`;
       } else {
         console.error(`Invoice with id ${code} not found in sessionStorage`);
       }
