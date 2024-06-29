@@ -16,7 +16,7 @@ const DeleteModal = ({ handleCloseModal, invoiceDetail }) => {
       sessionStorage.setItem("jsonData", JSON.stringify(updatedDataArray));
 
       handleCloseModal();
-      window.location.href = '/'
+      window.location.href = '/invoice-app-vite/'
 
     } catch (error) {
       console.error("Error deleting invoice:", error);

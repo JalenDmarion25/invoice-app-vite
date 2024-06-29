@@ -3,7 +3,6 @@ import useLocalStorage from 'use-local-storage';
 import Navbar from './components/navbar';
 import Home from './pages/Home';
 import Detail from './pages/DetailsPage';
-import TESTING from './pages/componentTESTPAGE';
 
 function App() {
 
@@ -16,12 +15,12 @@ function App() {
 <BrowserRouter>
   <Routes>
     <Route
-    path="/"
+    path="/invoice-app-vite/"
     element={<Home />}
     />
 
 <Route
-    path="/reciept/:code"
+    path="/invoice-app-vite/reciept/:code"
     element={<Detail />}
     />
   </Routes>

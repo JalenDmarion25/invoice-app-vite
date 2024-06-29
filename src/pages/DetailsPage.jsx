@@ -45,7 +45,7 @@ const DetailsPage = () => {
         dataArray[index] = updatedInvoiceDetail;
 
         sessionStorage.setItem("jsonData", JSON.stringify(dataArray));
-        window.location.href = `/`;
+        window.location.href = `/invoice-app-vite/`;
       } else {
         console.error(`Invoice with id ${code} not found in sessionStorage`);
       }
@@ -97,7 +97,7 @@ const DetailsPage = () => {
 
       {invoiceDetail ? (
         <section className="invoice-detail-information">
-          <Link className="return-home-btn" to={"/"}>
+          <Link className="return-home-btn" to={"/invoice-app-vite/"}>
             <img src={ArrowLeft} alt="" srcset="" /> Go back
           </Link>
           <div className="detail-status-info-bar">

@@ -127,7 +127,7 @@ const EditModal = ({ handleCloseModal, invoiceDetail }) => {
 
     handleCloseModal();
 
-    window.location.reload();
+    window.location.href = `/invoice-app-vite/`;
   };
 
   return (
