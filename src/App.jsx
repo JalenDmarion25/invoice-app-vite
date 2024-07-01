@@ -12,7 +12,7 @@ function App() {
   return (
 <main className='App' data-theme={isDark ? "dark" : "light"}>
   <Navbar isChecked={isDark} handleChange={() => setIsDark(!isDark)}/>
-<BrowserRouter>
+<BrowserRouter basename="invoice-app-vite">
   <Routes>
     <Route
     path="/invoice-app-vite/"
