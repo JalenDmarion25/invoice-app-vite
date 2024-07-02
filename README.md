@@ -16,5 +16,5 @@ An application that allows the user to create/delete/edit invoices. I wanted to 
 
 ## Links
 
-Link to live demo -> https://jalendmarion25.github.io/invoice-app-vite/
-Link to "API" endpoing -> https://github.com/JalenDmarion25/invoice-app-api-endpoint
+ - Link to live demo -> https://jalendmarion25.github.io/invoice-app-vite/
+ - Link to "API" endpoing -> https://github.com/JalenDmarion25/invoice-app-api-endpoint
